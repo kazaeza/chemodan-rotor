@@ -1,0 +1,841 @@
+/* ============================================
+   ЧЕМОДАН ИДЕЙ — ФК РОТОР
+   ============================================ */
+
+:root {
+  /* Клубные цвета ФК Ротор: навигационный, королевский синий, голубой, белый. Красный — редко. */
+  --leather-dark: #0a1a3a;    /* тёмный навигационный: фон body, внешняя окантовка */
+  --leather: #0d234a;         /* корпус чемодана */
+  --leather-light: #1b3876;   /* блик на корпусе */
+  --brass: #ffffff;           /* акценты (ранее латунь → белый) */
+  --brass-dark: #c5d8e8;      /* мягкий голубо-серый */
+  --velvet: #1b4aa8;          /* бархат — royal blue, цвет формы */
+  --velvet-light: #2a5ec2;    /* блик бархата */
+  --paper: #ffffff;           /* бумага записки */
+  --paper-dark: #e8eef7;      /* светло-голубая бумага квитанции */
+  --ink: #0d1b2e;             /* текст — почти чёрный, холодный */
+  --blood: #c8102e;           /* красный акцент: штамп, сургуч, цитата */
+  --rotor-blue: #003f87;      /* ссылки, средний синий */
+  --sky: #4aa8e8;             /* голубой акцент */
+
+  --font-display: 'Cormorant Garamond', 'PT Serif', serif;
+  --font-type: 'Special Elite', 'Courier New', monospace;
+  --font-body: 'PT Serif', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--leather-dark);
+}
+
+body {
+  /* клубный тёмно-синий фон */
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(180,220,255,0.10), transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.4), transparent 60%),
+    repeating-linear-gradient(117deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 7px),
+    linear-gradient(180deg, #001428 0%, #031f42 45%, #001428 100%);
+}
+
+/* ============ SCENES ============ */
+.scene {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vh 4vw;
+}
+.scene.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ============ ACT 1: COVER ============ */
+
+.scene-cover { }
+
+.cover-inner {
+  position: relative;
+  width: min(1100px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Обёртка вокруг картинки и замков — точно по габаритам картинки,
+   чтобы проценты left/right/top для замков считались от реальной фотки. */
+.cover-image-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  font-size: 0; /* убираем лишний baseline-зазор от inline-block */
+  line-height: 0;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.7));
+  animation: cover-breathe 6s ease-in-out infinite;
+  transition: opacity 0.55s ease;
+}
+
+.cover-chemodan {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 62vh;
+}
+
+@keyframes cover-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.cover-lock {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  top: 35%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, opacity 0.35s;
+}
+.cover-lock-left { left: 28%; }
+.cover-lock-right { right: 28%; }
+
+/* SVG-замок */
+.lock-svg {
+  width: 100%;
+  height: 100%;
+  color: rgba(255,255,255,0.92);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.45));
+  animation: lock-pulse 2s ease-in-out infinite;
+  transition: color 0.35s, filter 0.35s;
+}
+
+.lock-shackle {
+  transform-box: fill-box;
+  transform-origin: 100% 100%; /* нижний правый угол — точка петли */
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Состояние «открыт» */
+.cover-lock.clicked {
+  animation: shake 0.5s;
+}
+.cover-lock.clicked .lock-svg {
+  animation: none;
+  color: var(--sky);
+  filter: drop-shadow(0 0 18px rgba(74,168,232,0.85));
+}
+.cover-lock.clicked .lock-shackle {
+  transform: translate(-5px, -9px) rotate(-48deg);
+}
+
+@keyframes lock-pulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.35)); }
+  50%       { filter: drop-shadow(0 0 22px rgba(255,255,255,0.92)); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px) rotate(-3deg); }
+  40% { transform: translateX(4px) rotate(3deg); }
+  60% { transform: translateX(-3px) rotate(-2deg); }
+  80% { transform: translateX(3px) rotate(2deg); }
+}
+
+.cover-text {
+  text-align: center;
+  margin-top: 2vh;
+  color: var(--paper);
+}
+
+.cover-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+.cover-title .line {
+  display: block;
+}
+.cover-title .line:first-child {
+  color: var(--sky);
+}
+
+.cover-hint {
+  margin-top: 16px;
+  font-family: var(--font-type);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: lowercase;
+  color: var(--paper-dark);
+  opacity: 0.7;
+  animation: fade-pulse 2.5s ease-in-out infinite;
+}
+@keyframes fade-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.85; }
+}
+
+.cover-meta {
+  position: absolute;
+  bottom: -2vh;
+  right: 0;
+  font-family: var(--font-type);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--paper-dark);
+  opacity: 0.6;
+  text-align: right;
+  line-height: 1.8;
+}
+.cover-meta .meta-row span {
+  display: inline-block;
+  min-width: 100px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.cover-meta .meta-row b {
+  color: var(--paper);
+  font-weight: normal;
+}
+
+/* --- кинематографическое открытие --- */
+.cover-inner.unlocking .cover-image-wrap,
+.cover-inner.unlocking .cover-meta {
+  opacity: 0;
+}
+.cover-inner.unlocking .cover-lock {
+  pointer-events: none;
+}
+
+/* «Ротор · 5 идей» — intro заголовок */
+.cover-title .line.intro-club {
+  color: var(--sky);
+  font-size: clamp(40px, 7vw, 72px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.cover-title .line.intro-sub {
+  color: var(--paper);
+  font-size: clamp(16px, 2.6vw, 30px);
+  font-weight: 500;
+  opacity: 0.82;
+  letter-spacing: 0.03em;
+  margin-top: 6px;
+}
+
+/* ============ ACT 2: INSIDE ============ */
+
+.chemodan-frame {
+  width: min(1000px, 94vw);
+  height: min(720px, 86vh);
+  position: relative;
+  background: var(--leather);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 0 0 8px var(--leather-dark),
+    inset 0 0 0 10px var(--brass-dark),
+    inset 0 0 0 14px var(--leather-dark),
+    0 40px 80px rgba(0,0,0,0.7),
+    0 0 0 2px rgba(0,0,0,0.4);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: chemodan-open 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: center bottom;
+}
+
+@keyframes chemodan-open {
+  0% { transform: scale(0.6) rotateX(40deg); opacity: 0; }
+  100% { transform: scale(1) rotateX(0); opacity: 1; }
+}
+
+.lid {
+  flex: 0 0 72px;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 12px),
+    linear-gradient(180deg, var(--leather-light), var(--leather));
+  border-radius: 10px;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -2px 4px rgba(0,0,0,0.4);
+}
+.lid-inner { display: contents; }
+
+.lid-stamps {
+  display: flex;
+  gap: 14px;
+}
+.stamp {
+  width: 36px; height: 36px;
+  border: 2px dashed var(--paper-dark);
+  border-radius: 50%;
+  color: var(--paper-dark);
+  font-family: var(--font-type);
+  font-size: 16px;
+  display: grid; place-items: center;
+  opacity: 0.3;
+  transition: all 0.5s;
+}
+.stamp.marked {
+  border-style: solid;
+  border-color: var(--blood);
+  color: var(--blood);
+  background: rgba(255,255,255,0.9);
+  opacity: 1;
+  transform: rotate(-8deg);
+  box-shadow: 0 0 15px rgba(200,16,46,0.35);
+}
+
+.lid-label {
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--paper-dark);
+  opacity: 0.6;
+}
+
+.body {
+  flex: 1;
+  background: var(--leather-dark);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.6);
+}
+.velvet {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 40%, var(--velvet-light), var(--velvet) 65%, #0d234a 100%),
+    var(--velvet);
+  box-shadow:
+    inset 0 0 60px rgba(0,0,0,0.55),
+    inset 0 0 0 2px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.artifacts {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+.artifact {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%) rotate(var(--rot));
+  cursor: pointer;
+  width: clamp(120px, 18vw, 180px);
+  transition: transform 0.3s, filter 0.3s;
+  z-index: 2;
+}
+.artifact:hover {
+  transform: translate(-50%, -50%) rotate(0deg) scale(1.1);
+  z-index: 10;
+}
+.artifact:hover .artifact-thumb {
+  box-shadow:
+    0 0 0 3px var(--brass),
+    0 20px 40px rgba(0,0,0,0.7);
+}
+.artifact-thumb {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow:
+    0 0 0 4px var(--paper-dark),
+    0 0 0 5px var(--leather-dark),
+    0 10px 25px rgba(0,0,0,0.6);
+  transition: box-shadow 0.3s;
+  position: relative;
+}
+.artifact-thumb .thumb-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.artifact-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.artifact-label {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-family: var(--font-type);
+  font-size: 12px;
+  color: var(--paper);
+  text-transform: lowercase;
+  letter-spacing: 0.15em;
+  opacity: 0.85;
+}
+.artifact.viewed .artifact-thumb {
+  filter: grayscale(0.3) brightness(0.85);
+}
+.artifact.viewed::after {
+  content: "✓";
+  position: absolute;
+  top: -10px; right: -10px;
+  width: 28px; height: 28px;
+  background: var(--rotor-blue);
+  color: #ffffff;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5), 0 0 0 2px #ffffff;
+}
+
+.hint-close {
+  position: fixed;
+  bottom: 14px; right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--paper-dark);
+  padding: 4px 4px 2px;
+  font-family: var(--font-type);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  cursor: pointer;
+  opacity: 0.5;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.25s, color 0.25s;
+  z-index: 20;
+}
+.hint-close:hover { opacity: 1; color: var(--sky); }
+
+/* ============ VCARD (6-й слот) ============ */
+
+.artifact.vcard {
+  opacity: 0;
+  pointer-events: none;
+  width: clamp(90px, 13vw, 130px);
+  z-index: 5;
+}
+.artifact.vcard.unsealed {
+  pointer-events: auto;
+  animation: vcard-drop 1.5s cubic-bezier(0.2, 1.2, 0.4, 1) forwards;
+}
+.artifact.vcard.unsealed::before {
+  content: "запечатано лично";
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-type);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brass);
+  white-space: nowrap;
+  animation: fade-pulse 2.2s ease-in-out infinite;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+.artifact.vcard .artifact-thumb {
+  position: relative;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.2), transparent 40%),
+    radial-gradient(circle at 75% 80%, rgba(74,168,232,0.14), transparent 50%),
+    var(--paper);
+}
+.artifact.vcard.unsealed .artifact-thumb {
+  animation: vcard-pulse 2.4s ease-in-out infinite;
+}
+
+.vcard-face {
+  position: absolute;
+  inset: 22% 16% 22% 14%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14%;
+}
+.vcard-face span {
+  display: block;
+  height: 2px;
+  background: rgba(13,27,46,0.45);
+  border-radius: 1px;
+}
+.vcard-face span:nth-child(1) { width: 82%; }
+.vcard-face span:nth-child(2) { width: 58%; }
+.vcard-face span:nth-child(3) { width: 72%; }
+
+.vcard-wax {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 40% 30%, #d84040 0%, #9a1f1f 55%, #5a0d0d 100%);
+  box-shadow:
+    inset 0 -3px 6px rgba(0,0,0,0.4),
+    inset 0 3px 6px rgba(255,180,180,0.3),
+    0 4px 8px rgba(0,0,0,0.5);
+  transform: rotate(-12deg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255,220,200,0.55);
+  z-index: 2;
+}
+
+.artifact.vcard.unsealed .artifact-label {
+  color: var(--brass);
+  opacity: 1;
+}
+
+@keyframes vcard-drop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(calc(var(--rot) - 10deg)) scale(0.4);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(calc(var(--rot) + 4deg)) scale(1.14);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--rot)) scale(1);
+  }
+}
+
+@keyframes vcard-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px var(--paper-dark),
+      0 0 0 5px var(--leather-dark),
+      0 10px 25px rgba(0,0,0,0.6),
+      0 0 25px rgba(74,168,232,0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px var(--paper-dark),
+      0 0 0 5px #ffffff,
+      0 10px 25px rgba(0,0,0,0.6),
+      0 0 50px rgba(74,168,232,0.7);
+  }
+}
+
+/* ============ ACT 3: DETAIL ============ */
+
+.scene-detail { background: rgba(0,10,26,0.85); backdrop-filter: blur(6px); cursor: pointer; }
+.scene-detail .note { cursor: default; }
+
+.note {
+  width: min(780px, 94vw);
+  max-height: 92vh;
+  background: var(--paper);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.8),
+    inset 0 0 0 1px rgba(0,0,0,0.1);
+  padding: 32px 40px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+  animation: note-slide 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* paper texture */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(13,27,46,0.03), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(74,168,232,0.08), transparent 50%),
+    var(--paper);
+}
+@keyframes note-slide {
+  from { opacity: 0; transform: translateY(30px) rotate(-1deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+.note::before, .note::after {
+  content: "";
+  position: absolute;
+  left: 10%; right: 10%;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 9px);
+}
+.note::before { top: 0; }
+.note::after { bottom: 0; }
+
+.note-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed rgba(0,0,0,0.2);
+  padding-bottom: 12px;
+}
+.note-back {
+  background: none;
+  border: none;
+  font-family: var(--font-type);
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.note-back:hover { opacity: 1; color: var(--blood); }
+.note-no {
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.note-visual {
+  width: 100%;
+  max-height: 36vh;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--paper-dark);
+}
+.note-visual img {
+  width: 100%;
+  max-height: 36vh;
+  object-fit: cover;
+  display: block;
+}
+
+.note-text h2.note-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3.5vw, 36px);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.note-tag {
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 14px;
+}
+.note-body { font-size: 16.5px; line-height: 1.65; }
+.note-body p { margin-bottom: 11px; }
+.note-body p.quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.3;
+  padding: 14px 20px;
+  border-left: 3px solid var(--blood);
+  color: var(--blood);
+  background: rgba(200,16,46,0.05);
+  margin: 14px 0;
+}
+.note-body p.fine {
+  font-family: var(--font-type);
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0,0,0,0.2);
+}
+
+/* ============ ACT 4: FINALE ============ */
+
+.scene-finale {
+  background: radial-gradient(ellipse at center, #031f42 0%, #000a1a 80%);
+  cursor: pointer;
+}
+.scene-finale .tag { cursor: default; }
+
+.tag {
+  width: min(520px, 92vw);
+  position: relative;
+  background: var(--paper-dark);
+  padding: 36px 34px 28px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.8),
+    inset 0 0 0 1px rgba(13,27,46,0.15);
+  clip-path: polygon(0 8%, 50% 0, 100% 8%, 100% 100%, 0 100%);
+  animation: tag-drop 1.4s cubic-bezier(0.4, 1.6, 0.5, 1);
+  background-image:
+    radial-gradient(circle at 30% 20%, rgba(13,27,46,0.04), transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(74,168,232,0.18), transparent 60%),
+    var(--paper-dark);
+}
+@keyframes tag-drop {
+  0% { transform: translateY(-200vh) rotate(-8deg); }
+  60% { transform: translateY(20px) rotate(2deg); }
+  80% { transform: translateY(-8px) rotate(-1deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+.tag-hole {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: #001428;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+.tag-string {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 3px;
+  height: 80px;
+  background: var(--ink);
+  box-shadow: 1px 0 0 rgba(0,0,0,0.3);
+}
+
+.tag-stamp {
+  position: absolute;
+  top: 60px;
+  right: -10px;
+  padding: 8px 14px;
+  border: 2px solid var(--blood);
+  color: var(--blood);
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  transform: rotate(8deg);
+  background: rgba(255,255,255,0.85);
+}
+
+.tag-title {
+  font-family: var(--font-type);
+  font-size: 18px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(0,0,0,0.3);
+}
+
+.tag-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.tag-fields > div {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted rgba(0,0,0,0.18);
+}
+.tag-fields dt {
+  font-family: var(--font-type);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.tag-fields dd {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.3;
+}
+.tag-fields dd a {
+  color: var(--rotor-blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(27,74,168,0.3);
+}
+.tag-fields dd a:hover { border-bottom-color: var(--rotor-blue); }
+
+.tag-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.tag-btn {
+  flex: 1;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 12px 14px;
+  font-family: var(--font-type);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.tag-btn:hover { background: var(--blood); }
+.tag-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.tag-btn-ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.tag-btn.copied { background: var(--rotor-blue); }
+
+.tag-footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-type);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0,0,0,0.2);
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 720px) {
+  .cover-meta { display: none; }
+  .cover-lock { width: 40px; height: 40px; }
+  .cover-lock-left { left: 24%; }
+  .cover-lock-right { right: 24%; }
+
+  .chemodan-frame { padding: 16px; }
+  .lid { flex-basis: 60px; padding: 10px 14px; }
+  .stamp { width: 28px; height: 28px; font-size: 13px; }
+  .lid-label { font-size: 9px; letter-spacing: 0.15em; }
+
+  .artifact { width: clamp(80px, 26vw, 140px); }
+
+  .note { padding: 24px 22px 28px; }
+  .tag-fields > div { grid-template-columns: 100px 1fr; gap: 10px; }
+  .tag-fields dd { font-size: 15px; }
+}

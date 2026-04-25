@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чемодан идей — ФК Ротор</title>
+  <meta name="description" content="5 артефактов. Одна ручка. Ротор в РПЛ.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Cormorant+Garamond:wght@500;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ ACT 1: COVER ============ -->
+  <section class="scene scene-cover is-active" data-scene="cover">
+    <div class="cover-inner">
+      <div class="cover-image-wrap">
+        <img class="cover-chemodan" src="assets/images/cover-chemodan.png" alt="Чемодан" id="coverImage">
+
+        <button class="cover-lock cover-lock-left" data-lock="left" aria-label="Левый замок">
+          <svg class="lock-svg" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="lock-shackle" d="M8 18V11C8 5 28 5 28 11V18" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="17" width="30" height="19" rx="4" fill="currentColor"/>
+            <circle cx="18" cy="25" r="3.5" fill="#0a1a3a"/>
+            <rect x="16.5" y="27" width="3" height="7" rx="1.5" fill="#0a1a3a"/>
+          </svg>
+        </button>
+        <button class="cover-lock cover-lock-right" data-lock="right" aria-label="Правый замок">
+          <svg class="lock-svg" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path class="lock-shackle" d="M8 18V11C8 5 28 5 28 11V18" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="17" width="30" height="19" rx="4" fill="currentColor"/>
+            <circle cx="18" cy="25" r="3.5" fill="#0a1a3a"/>
+            <rect x="16.5" y="27" width="3" height="7" rx="1.5" fill="#0a1a3a"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cover-text">
+        <h1 class="cover-title">
+          <span class="line">Пора в РПЛ.</span>
+          <span class="line">Чемодан уже собран.</span>
+        </h1>
+        <p class="cover-hint" id="coverHint">щёлкните оба замка</p>
+      </div>
+
+      <div class="cover-meta">
+        <div class="meta-row"><span>Рейс</span><b>РПЛ / стыки 2026</b></div>
+        <div class="meta-row"><span>Груз</span><b>5 артефактов</b></div>
+        <div class="meta-row"><span>Отправитель</span><b id="metaSender">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACT 2: INSIDE CHEMODAN ============ -->
+  <section class="scene scene-inside" data-scene="inside">
+
+    <div class="chemodan-frame">
+
+      <div class="lid">
+        <div class="lid-inner">
+          <div class="lid-stamps" id="lidStamps">
+            <span class="stamp" data-stamp="banner">1</span>
+            <span class="stamp" data-stamp="suitcase">2</span>
+            <span class="stamp" data-stamp="seat">3</span>
+            <span class="stamp" data-stamp="hourglass">4</span>
+            <span class="stamp" data-stamp="map">5</span>
+          </div>
+          <div class="lid-label">СК «РОТОР» · 1929 · багаж</div>
+        </div>
+      </div>
+
+      <div class="body">
+        <div class="velvet">
+          <ul class="artifacts" id="artifacts">
+
+            <li class="artifact" data-id="banner" style="--x:15%; --y:20%; --rot:-4deg;">
+              <div class="artifact-thumb" aria-label="Баннер"></div>
+              <span class="artifact-label">баннер</span>
+            </li>
+
+            <li class="artifact" data-id="suitcase" style="--x:55%; --y:25%; --rot:3deg;">
+              <div class="artifact-thumb" aria-label="Чемодан в РПЛ"></div>
+              <span class="artifact-label">чемодан</span>
+            </li>
+
+            <li class="artifact" data-id="seat" style="--x:86%; --y:38%; --rot:-2deg;">
+              <div class="artifact-thumb" aria-label="Место дяди Саши"></div>
+              <span class="artifact-label">сиденье</span>
+            </li>
+
+            <li class="artifact" data-id="hourglass" style="--x:30%; --y:60%; --rot:5deg;">
+              <div class="artifact-thumb" aria-label="Счётчик"></div>
+              <span class="artifact-label">счётчик</span>
+            </li>
+
+            <li class="artifact" data-id="map" style="--x:62%; --y:72%; --rot:-3deg;">
+              <div class="artifact-thumb" aria-label="8 районов"></div>
+              <span class="artifact-label">районы</span>
+            </li>
+
+            <!-- 6-й слот: визитка отправителя. Появляется после просмотра всех 5 идей, в центре. -->
+            <li class="artifact vcard" data-id="vcard" style="--x:50%; --y:50%; --rot:-1.5deg;" aria-hidden="true">
+              <div class="artifact-thumb vcard-thumb">
+                <div class="vcard-face" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="vcard-wax" aria-hidden="true">R</span>
+              </div>
+              <span class="artifact-label">визитка</span>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="hint-close" id="hintClose" aria-label="К квитанции">к квитанции →</button>
+
+  </section>
+
+  <!-- ============ ACT 3: ARTIFACT DETAIL ============ -->
+  <section class="scene scene-detail" data-scene="detail">
+    <div class="note" id="note">
+      <div class="note-head">
+        <button class="note-back" id="noteBack">← в чемодан</button>
+        <span class="note-no" id="noteNo">№ 1 / 5</span>
+      </div>
+
+      <div class="note-visual">
+        <img id="noteImage" src="" alt="">
+      </div>
+
+      <div class="note-text">
+        <h2 id="noteTitle" class="note-title"></h2>
+        <p id="noteTag" class="note-tag"></p>
+        <div id="noteBody" class="note-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACT 4: FINALE ============ -->
+  <section class="scene scene-finale" data-scene="finale">
+
+    <div class="tag" id="baggageTag">
+      <div class="tag-hole"></div>
+      <div class="tag-string"></div>
+
+      <div class="tag-stamp">доставлено</div>
+
+      <h2 class="tag-title">багажная квитанция</h2>
+
+      <dl class="tag-fields">
+        <div><dt>груз</dt><dd>5 идей для ФК Ротор. Можно больше.</dd></div>
+        <div><dt>пункт назначения</dt><dd>РПЛ</dd></div>
+        <div><dt>отправитель</dt><dd id="tagSender">—</dd></div>
+        <div><dt>о себе</dt><dd id="tagAbout">—</dd></div>
+        <div><dt>связь</dt><dd><a id="tagTg" href="#" target="_blank" rel="noopener">—</a></dd></div>
+      </dl>
+
+      <div class="tag-actions">
+        <button id="tagCopy" class="tag-btn">скопировать telegram</button>
+        <button id="tagReopen" class="tag-btn tag-btn-ghost">открыть снова</button>
+      </div>
+
+      <div class="tag-footer">
+        <span>Волгоград · 2026</span>
+        <span>СК «Ротор»</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ ARTIFACT TEMPLATES ============ -->
+
+  <template id="tpl-banner">
+    <h2>Болел за Ротор во Второй лиге</h2>
+    <p class="note-tag">Баннер на матч перед стыками</p>
+    <div class="note-body">
+      <p>На матч перед стыками выставляем баннер с текстом:</p>
+      <p class="quote">«Я болел за Ротор, когда он ещё был во Второй лиге».</p>
+      <p>Каждый желающий вписывает своё имя и дату.</p>
+      <p>В соцсетях подаём заранее, в стиле «стань частью истории».</p>
+      <p>После матча баннер забираем. Можно заюзать как фон в фан-шопах или просто как экспонат сложить и сохранить для потомков.</p>
+    </div>
+  </template>
+
+  <template id="tpl-suitcase">
+    <h2>Чемодан в РПЛ</h2>
+    <p class="note-tag">Физический экспонат · все оставшиеся домашние</p>
+    <div class="note-body">
+      <p>Собираем чемодан в РПЛ. Выставляем физически — как экспонат, на виду. Ставим на каждый оставшийся матч, постоянно светим в соцсетях.</p>
+      <p class="quote">«Что сегодня положим? Узнаём в каментах».</p>
+      <p>Сами периодически кладём туда артефакты — футболку Веретенникова, олдскульный шарф, знаковые штуки вроде билета на Ротор–МЮ 1995. Всё это раскидываем по сеткам.</p>
+      <p class="fine">Ты уже держишь эту презентацию в таком же чемодане. Не совпадение.</p>
+    </div>
+  </template>
+
+  <template id="tpl-seat">
+    <h2>Брендированное место дяди Саши</h2>
+    <p class="note-tag">Памятное кресло · постоянный экспонат трибуны</p>
+    <div class="note-body">
+      <p>Одно кресло на трибуне выделяется краской клубных цветов. Под номером кресла — маленькая табличка с именем.</p>
+      <p>Тихо, без пафосных церемоний. Не освещаем, пока само не разлетится вирусно.</p>
+      <p class="quote">«Такие вещи люди любят и замечают сами».</p>
+      <p>А как только заметят — тогда уже и подключаемся. Но это уже совсем другая активация…</p>
+    </div>
+  </template>
+
+  <template id="tpl-hourglass">
+    <h2>Счётчик ожидания</h2>
+    <p class="note-tag">Физический таймер · фан-зона + соцсети</p>
+    <div class="note-body">
+      <p>Большие песочные часы с синим песком в фан-зоне. Как вариант — табло «Дней до РПЛ: Х», но песочные часы символичнее и прикольнее, кажется.</p>
+      <p>В соцсетях раз в какое-то время — просто пост с одной цифрой. И всё.</p>
+      <p class="quote">«Подписчики сами пусть понимают, о чём речь».</p>
+    </div>
+  </template>
+
+  <template id="tpl-map">
+    <h2>Районы Волгограда</h2>
+    <p class="note-tag">Сезонная тематика · 8 домашних = 8 районов</p>
+    <div class="note-body">
+      <p>Ровно столько районов в городе, сколько домашних матчей в сезоне. Совпадение — дар.</p>
+      <p>Подсвечиваем тематику района: коммуникация в соцсетях перед матчем, активации в фан-зоне, может даже выход и объявление игроков под него.</p>
+      <p>У нас каждый район колоритный, есть куда покопать. Фанаты из каждого района будут очень довольны.</p>
+      <p class="quote">«Заземлённость и связь с городом. За это всегда респектуют».</p>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>

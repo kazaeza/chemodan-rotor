@@ -1,0 +1,16 @@
+{
+  "name": "chemodan-rotor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chemodan idey — ФК Ротор",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000}",
+    "dev": "serve -s . -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
