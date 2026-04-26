@@ -845,13 +845,16 @@ body {
   .tag-fields > div { grid-template-columns: 100px 1fr; gap: 10px; }
   .tag-fields dd { font-size: 15px; }
 
-  /* На мобиле фотки часто вертикальные — показываем целиком, не режем */
+  /* На мобиле фотки часто вертикальные — высота контейнера по содержимому */
   .note-visual {
-    max-height: 50vh;
+    height: auto;
+    max-height: 55vh;
     background: var(--paper-dark);
   }
   .note-visual img {
-    max-height: 50vh;
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
     object-fit: contain;
   }
 }
