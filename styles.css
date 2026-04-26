@@ -145,8 +145,14 @@ body {
 }
 
 @keyframes lock-pulse {
-  0%, 100% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.35)); }
-  50%       { filter: drop-shadow(0 0 22px rgba(255,255,255,0.92)); }
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.35));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(255,255,255,0.95));
+    transform: scale(1.18);
+  }
 }
 
 @keyframes shake {
