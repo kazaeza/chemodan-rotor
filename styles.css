@@ -624,6 +624,7 @@ body {
   border-radius: 4px;
   background: var(--paper-dark);
   overflow: hidden;
+  flex-shrink: 0;
 }
 .note-visual img {
   width: 100%;
