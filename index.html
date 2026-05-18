@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Чемодан идей — ФК Ротор</title>
-  <meta name="description" content="5 артефактов. Одна ручка. Ротор в РПЛ.">
+  <meta name="description" content="5 артефактов. Одна ручка. Один Ротор.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,14 +40,14 @@
 
       <div class="cover-text">
         <h1 class="cover-title">
-          <span class="line">Пора в РПЛ.</span>
-          <span class="line">Чемодан уже собран.</span>
+          <span class="line">Сезон собирается.</span>
+          <span class="line">Чемодан — тоже.</span>
         </h1>
         <p class="cover-hint" id="coverHint">щёлкните оба замка</p>
       </div>
 
       <div class="cover-meta">
-        <div class="meta-row"><span>Рейс</span><b>РПЛ / стыки 2026</b></div>
+        <div class="meta-row"><span>Маршрут</span><b>сезон 2026/27</b></div>
         <div class="meta-row"><span>Груз</span><b>5 артефактов</b></div>
         <div class="meta-row"><span>Отправитель</span><b id="metaSender">—</b></div>
       </div>
@@ -63,9 +63,9 @@
         <div class="lid-inner">
           <div class="lid-stamps" id="lidStamps">
             <span class="stamp" data-stamp="banner">1</span>
-            <span class="stamp" data-stamp="suitcase">2</span>
+            <span class="stamp" data-stamp="scarf">2</span>
             <span class="stamp" data-stamp="seat">3</span>
-            <span class="stamp" data-stamp="hourglass">4</span>
+            <span class="stamp" data-stamp="gallery">4</span>
             <span class="stamp" data-stamp="map">5</span>
           </div>
           <div class="lid-label">СК «РОТОР» · 1929 · багаж</div>
@@ -81,9 +81,9 @@
               <span class="artifact-label">баннер</span>
             </li>
 
-            <li class="artifact" data-id="suitcase" style="--x:55%; --y:25%; --rot:3deg;">
-              <div class="artifact-thumb" aria-label="Чемодан в РПЛ"></div>
-              <span class="artifact-label">чемодан</span>
+            <li class="artifact" data-id="scarf" style="--x:55%; --y:25%; --rot:3deg;">
+              <div class="artifact-thumb" aria-label="Фанатометр"></div>
+              <span class="artifact-label">шарф</span>
             </li>
 
             <li class="artifact" data-id="seat" style="--x:86%; --y:38%; --rot:-2deg;">
@@ -91,9 +91,9 @@
               <span class="artifact-label">сиденье</span>
             </li>
 
-            <li class="artifact" data-id="hourglass" style="--x:30%; --y:60%; --rot:5deg;">
-              <div class="artifact-thumb" aria-label="Счётчик"></div>
-              <span class="artifact-label">счётчик</span>
+            <li class="artifact" data-id="gallery" style="--x:30%; --y:60%; --rot:5deg;">
+              <div class="artifact-thumb" aria-label="Галерея Ротора"></div>
+              <span class="artifact-label">галерея</span>
             </li>
 
             <li class="artifact" data-id="map" style="--x:62%; --y:72%; --rot:-3deg;">
@@ -155,7 +155,7 @@
 
       <dl class="tag-fields">
         <div><dt>груз</dt><dd>5 идей для ФК Ротор. Можно больше.</dd></div>
-        <div><dt>пункт назначения</dt><dd>РПЛ</dd></div>
+        <div><dt>пункт назначения</dt><dd>сезон 2026/27</dd></div>
         <div><dt>отправитель</dt><dd id="tagSender">—</dd></div>
         <div><dt>о себе</dt><dd id="tagAbout">—</dd></div>
         <div><dt>связь</dt><dd><a id="tagTg" href="#" target="_blank" rel="noopener">—</a></dd></div>
@@ -178,25 +178,34 @@
 
   <template id="tpl-banner">
     <h2>Болел за Ротор ещё во Второй лиге</h2>
-    <p class="note-tag">Баннер на матч перед стыками</p>
+    <p class="note-tag">Баннер на первый домашний матч сезона</p>
     <div class="note-body">
-      <p>На матч перед стыками выставляем баннер с текстом:</p>
+      <p>На первом домашнем матче сезона выставляем большой баннер с текстом:</p>
       <p class="quote">«Я болел за Ротор, когда он ещё был во Второй лиге».</p>
-      <p>Каждый желающий вписывает своё имя и дату.</p>
-      <p>В соцсетях подаём заранее, в стиле «стань частью истории».</p>
-      <p>Да, есть риск проиграть в стыках. Можно их минимизировать. Например, выставить баннер только при победе в гостях.</p>
-
+      <p>Каждый желающий вписывает своё имя и дату начала боления — прямо у баннера, маркером.</p>
+      <p>В соцсетях подаём заранее, в стиле «стань частью истории». На стадион приходишь с заготовленной фразой, на выходе у тебя — селфи на фоне своего имени.</p>
+      <p>После матча баннер забираем. Можно заюзать как фон в фан-шопах или просто сложить и сохранить для архива клуба.</p>
+      <p class="fine">Бонус: те, кто впишет себя в первом году, через 5 лет смогут показать фотку и сказать «я там был». Это и есть длинная история.</p>
     </div>
   </template>
 
-  <template id="tpl-suitcase">
-    <h2>Чемодан в РПЛ</h2>
-    <p class="note-tag">Физический экспонат · все оставшиеся домашние</p>
+  <template id="tpl-scarf">
+    <h2>Фанатометр</h2>
+    <p class="note-tag">Стенд в фан-зоне · каждый домашний матч</p>
     <div class="note-body">
-      <p>Собираем чемодан в РПЛ. Выставляем физически — как экспонат, на виду. Ставим на каждый оставшийся матч, постоянно светим в соцсетях.</p>
-      <p class="quote">«Что сегодня положим? Узнаём в каментах».</p>
-      <p>Сами периодически кладём туда артефакты — футболку Веретенникова, олдскульный шарф, знаковые штуки вроде билета на Ротор–МЮ 1995. Всё это раскидываем по сеткам.</p>
-      <p class="fine">Ты уже держишь эту презентацию в таком же чемодане. Не совпадение.</p>
+      <p>Шарф Ротора — то, что не выбрасывают. И тем, что лежит у тебя 30 лет, очень хочется похвастаться. Даём такую возможность.</p>
+      <p>В фан-зоне — стенд. Приходишь со своим самым старым шарфом, тебе на куртку клеят наклейку с рангом. Ранги — через механику ротора. Чем старее шарф, тем выше:</p>
+      <ul class="ranks">
+        <li><b>Стартер</b> — болеешь до 3 лет</li>
+        <li><b>Болт</b> — 3–7 лет</li>
+        <li><b>Шестерня</b> — 7–15 лет</li>
+        <li><b>Вал</b> — 15–25 лет</li>
+        <li><b>Ротор</b> — 25–30 лет</li>
+        <li><b>Основатель</b> — 30+ лет</li>
+      </ul>
+      <p>Отдельный ранг — <b>«Я был на МЮ»</b>. Для тех, кто был в 1995-м. Не проверяем — у таких людей всегда есть истории.</p>
+      <p class="quote">«К концу сезона у завсегдатаев — стена нашивок на куртке. И повод подходить к незнакомым».</p>
+      <p>Один сотрудник на стенде, шесть видов наклеек, очередь сама собой.</p>
     </div>
   </template>
 
@@ -211,13 +220,15 @@
     </div>
   </template>
 
-  <template id="tpl-hourglass">
-    <h2>Счётчик ожидания</h2>
-    <p class="note-tag">Физический таймер · фан-зона + соцсети</p>
+  <template id="tpl-gallery">
+    <h2>Галерея Ротора</h2>
+    <p class="note-tag">Рисованные портреты игроков · весь сезон + финальная выставка</p>
     <div class="note-body">
-      <p>После победы в стыках 🤞 выставляем большие песочные часы с синим песком в фан-зоне. Как вариант — табло «Дней до первого матча в РПЛ: Х», но песочные часы символичнее и прикольнее, кажется.</p>
-      <p>В соцсетях раз в какое-то время — просто пост с одной цифрой. И всё.</p>
-      <p class="quote">«Подписчики сами пусть понимают, о чём речь».</p>
+      <p>На трибунах Ротора живёт штука, которой почти нет у других клубов: <b>рисованные портреты игроков</b>. Дети, подростки, девушки — приходят с постерами, прорисованными по пять часов фломастером.</p>
+      <p>Это уже есть. Надо просто поставить рамки.</p>
+      <p>Каждый матч SMM выбирает лучший портрет. Клуб печатает его в полный рост и вешает в фан-зоне на следующий матч — с подписью художника.</p>
+      <p>В финале сезона — физическая выставка «Ротор глазами трибуны». Все портреты за год, открытый доступ перед последним матчем.</p>
+      <p class="quote">«Сафронов уже сам брал чужой плакат и фотографировался с ним. Узаконьте это».</p>
     </div>
   </template>
 

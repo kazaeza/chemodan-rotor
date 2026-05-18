@@ -19,7 +19,7 @@ const state = {
   pendingReveal: false,
 };
 
-const ARTIFACT_ORDER = ["banner", "suitcase", "seat", "hourglass", "map"];
+const ARTIFACT_ORDER = ["banner", "scarf", "seat", "gallery", "map"];
 
 /* ============ inject user data ============ */
 function injectUser() {
@@ -307,27 +307,43 @@ const THUMB_ICONS = {
     <path d="M -75 -10 q 15 -8 30 0 t 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>
     <path d="M -65 25 q 15 -8 30 0 t 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>
     <path d="M -80 55 q 15 -8 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>`,
-  suitcase: `
-    <rect x="-100" y="-45" width="200" height="105" rx="8" fill="#003f87" stroke="#0d1b2e" stroke-width="3"/>
-    <rect x="-22" y="-63" width="44" height="18" rx="9" fill="none" stroke="#0d1b2e" stroke-width="3"/>
-    <line x1="-100" y1="10" x2="100" y2="10" stroke="#ffffff" stroke-width="1.5" opacity="0.4"/>
-    <circle cx="-58" cy="-8" r="6" fill="#ffffff"/>
-    <circle cx="58" cy="-8" r="6" fill="#ffffff"/>
-    <rect x="-18" y="-20" width="36" height="14" rx="2" fill="#ffffff" opacity="0.75"/>`,
+  scarf: `
+    <g transform="rotate(-6)">
+      <rect x="-130" y="-26" width="260" height="52" rx="3" fill="#003f87" stroke="#0d1b2e" stroke-width="2.5"/>
+      <rect x="-130" y="-22" width="260" height="5" fill="#ffffff"/>
+      <rect x="-130" y="-12" width="260" height="2.5" fill="#4aa8e8"/>
+      <rect x="-130" y="7" width="260" height="2.5" fill="#4aa8e8"/>
+      <rect x="-130" y="17" width="260" height="5" fill="#ffffff"/>
+      <text x="0" y="3" text-anchor="middle" font-family="'PT Serif', serif" font-size="14" font-weight="700" fill="#ffffff" letter-spacing="3">РОТОР</text>
+      <g fill="#0d1b2e">
+        <rect x="-140" y="-26" width="2" height="14"/>
+        <rect x="-136" y="-26" width="2" height="14"/>
+        <rect x="-132" y="-26" width="2" height="14"/>
+        <rect x="-140" y="14" width="2" height="14"/>
+        <rect x="-136" y="14" width="2" height="14"/>
+        <rect x="-132" y="14" width="2" height="14"/>
+        <rect x="132" y="-26" width="2" height="14"/>
+        <rect x="136" y="-26" width="2" height="14"/>
+        <rect x="140" y="-26" width="2" height="14"/>
+        <rect x="132" y="14" width="2" height="14"/>
+        <rect x="136" y="14" width="2" height="14"/>
+        <rect x="140" y="14" width="2" height="14"/>
+      </g>
+    </g>`,
   seat: `
     <path d="M -60 55 L -60 -25 Q -60 -48 -36 -48 L 36 -48 Q 60 -48 60 -25 L 60 55 Z"
       fill="#4aa8e8" stroke="#0d1b2e" stroke-width="3"/>
     <rect x="-72" y="55" width="144" height="16" fill="#003f87" stroke="#0d1b2e" stroke-width="2"/>
     <rect x="-22" y="-20" width="44" height="6" rx="2" fill="#ffffff" opacity="0.85"/>
     <rect x="-14" y="-6" width="28" height="3" rx="1" fill="#ffffff" opacity="0.55"/>`,
-  hourglass: `
-    <path d="M -55 -78 L 55 -78 L 0 0 L 55 78 L -55 78 L 0 0 Z"
-      fill="none" stroke="#0d1b2e" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M -48 -72 L 48 -72 L 0 -12 Z" fill="#1b4aa8"/>
-    <path d="M -28 72 L 28 72 L 0 32 Z" fill="#4aa8e8" opacity="0.9"/>
-    <circle cx="0" cy="2" r="3" fill="#1b4aa8"/>
-    <rect x="-62" y="-82" width="124" height="6" rx="2" fill="#0d1b2e"/>
-    <rect x="-62" y="76" width="124" height="6" rx="2" fill="#0d1b2e"/>`,
+  gallery: `
+    <rect x="-95" y="-90" width="190" height="190" fill="#e8eef7" stroke="#003f87" stroke-width="6"/>
+    <rect x="-83" y="-78" width="166" height="166" fill="#1b4aa8"/>
+    <circle cx="0" cy="-22" r="26" fill="#4aa8e8"/>
+    <path d="M -48 60 Q -48 12 0 12 Q 48 12 48 60 Z" fill="#4aa8e8"/>
+    <rect x="-22" y="-2" width="44" height="14" rx="2" fill="#003f87" opacity="0.85"/>
+    <text x="0" y="-58" text-anchor="middle" font-family="'PT Serif', serif" font-size="11" fill="#ffffff" letter-spacing="2">№ 10</text>
+    <text x="0" y="78" text-anchor="middle" font-family="'Special Elite', monospace" font-size="9" fill="#ffffff" letter-spacing="2" opacity="0.85">АРТЁМ</text>`,
   map: `
     <path d="M -110 -65 L 85 -80 L 112 40 L -60 82 Z"
       fill="#e8eef7" stroke="#003f87" stroke-width="2.5" stroke-linejoin="round"/>
@@ -370,20 +386,38 @@ const FALLBACK_ICONS = {
     <path d="M -85 -40 q 15 -8 30 0 t 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>
     <path d="M -75 0 q 15 -8 30 0 t 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>
     <path d="M -65 40 q 15 -8 30 0 t 30 0 t 30 0" stroke="#0d1b2e" fill="none" stroke-width="2"/>`,
-  "artifact-suitcase": `
-    <rect x="-100" y="-50" width="200" height="110" rx="8" fill="#1b4aa8" stroke="#ffffff" stroke-width="3"/>
-    <rect x="-22" y="-68" width="44" height="18" rx="9" fill="none" stroke="#ffffff" stroke-width="3"/>
-    <circle cx="-55" cy="-10" r="6" fill="#ffffff"/>
-    <circle cx="55" cy="-10" r="6" fill="#ffffff"/>`,
+  "artifact-scarf": `
+    <g transform="rotate(-6)">
+      <rect x="-150" y="-30" width="300" height="60" rx="3" fill="#1b4aa8" stroke="#ffffff" stroke-width="2.5"/>
+      <rect x="-150" y="-25" width="300" height="6" fill="#ffffff"/>
+      <rect x="-150" y="19" width="300" height="6" fill="#ffffff"/>
+      <text x="0" y="5" text-anchor="middle" font-family="'PT Serif', serif" font-size="18" font-weight="700" fill="#ffffff" letter-spacing="4">РОТОР</text>
+      <g fill="#ffffff">
+        <rect x="-160" y="-30" width="2" height="16"/>
+        <rect x="-156" y="-30" width="2" height="16"/>
+        <rect x="-152" y="-30" width="2" height="16"/>
+        <rect x="-160" y="14" width="2" height="16"/>
+        <rect x="-156" y="14" width="2" height="16"/>
+        <rect x="-152" y="14" width="2" height="16"/>
+        <rect x="152" y="-30" width="2" height="16"/>
+        <rect x="156" y="-30" width="2" height="16"/>
+        <rect x="160" y="-30" width="2" height="16"/>
+        <rect x="152" y="14" width="2" height="16"/>
+        <rect x="156" y="14" width="2" height="16"/>
+        <rect x="160" y="14" width="2" height="16"/>
+      </g>
+    </g>`,
   "artifact-seat": `
     <path d="M -60 60 L -60 -20 Q -60 -40 -40 -40 L 40 -40 Q 60 -40 60 -20 L 60 60 Z"
       fill="#4aa8e8" stroke="#ffffff" stroke-width="3"/>
     <rect x="-70" y="60" width="140" height="16" fill="#1b4aa8" stroke="#ffffff" stroke-width="2"/>`,
-  "artifact-hourglass": `
-    <path d="M -60 -80 L 60 -80 L 0 0 L 60 80 L -60 80 L 0 0 Z"
-      fill="none" stroke="#ffffff" stroke-width="3"/>
-    <path d="M -50 -70 L 50 -70 L 0 -10 Z" fill="#4aa8e8"/>
-    <path d="M -30 70 L 30 70 L 0 30 Z" fill="#1b4aa8" opacity="0.85"/>`,
+  "artifact-gallery": `
+    <rect x="-95" y="-100" width="190" height="200" fill="#ffffff" stroke="#4aa8e8" stroke-width="5"/>
+    <rect x="-83" y="-88" width="166" height="176" fill="#1b4aa8"/>
+    <circle cx="0" cy="-28" r="28" fill="#4aa8e8"/>
+    <path d="M -50 70 Q -50 14 0 14 Q 50 14 50 70 Z" fill="#4aa8e8"/>
+    <rect x="-24" y="-2" width="48" height="16" rx="2" fill="#003f87" opacity="0.85"/>
+    <text x="0" y="-66" text-anchor="middle" font-family="'PT Serif', serif" font-size="13" fill="#ffffff" letter-spacing="2">№ 10</text>`,
   "artifact-map": `
     <path d="M -110 -60 L 80 -80 L 110 40 L -60 80 Z"
       fill="#ffffff" stroke="#4aa8e8" stroke-width="2.5" opacity="0.95"/>

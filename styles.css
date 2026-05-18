@@ -670,6 +670,35 @@ body {
   border-top: 1px dashed rgba(0,0,0,0.2);
 }
 
+.note-body ul.ranks {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 14px;
+  font-family: var(--font-type);
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+.note-body ul.ranks li {
+  padding: 7px 0 7px 22px;
+  position: relative;
+  border-bottom: 1px dashed rgba(0,0,0,0.12);
+}
+.note-body ul.ranks li:last-child { border-bottom: none; }
+.note-body ul.ranks li::before {
+  content: "⚙";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  color: var(--velvet);
+  font-size: 14px;
+}
+.note-body ul.ranks li b {
+  color: var(--velvet);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-right: 4px;
+}
+
 /* ============ ACT 4: FINALE ============ */
 
 .scene-finale {
