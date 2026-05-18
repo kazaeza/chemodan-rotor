@@ -621,15 +621,13 @@ body {
 
 .note-visual {
   width: 100%;
-  height: 36vh;
-  overflow: hidden;
   border-radius: 4px;
   background: var(--paper-dark);
+  overflow: hidden;
 }
 .note-visual img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
@@ -874,16 +872,4 @@ body {
   .tag-fields > div { grid-template-columns: 100px 1fr; gap: 10px; }
   .tag-fields dd { font-size: 15px; }
 
-  /* На мобиле фотки часто вертикальные — высота контейнера по содержимому */
-  .note-visual {
-    height: auto;
-    max-height: 55vh;
-    background: var(--paper-dark);
-  }
-  .note-visual img {
-    width: 100%;
-    height: auto;
-    max-height: 55vh;
-    object-fit: contain;
-  }
 }
